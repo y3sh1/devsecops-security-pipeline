@@ -1,0 +1,12 @@
+rules:
+  - id: log-raw-request-headers
+    languages: [python]
+    severity: ERROR
+    message: Log the header count or an allowlisted field. Raw request headers can contain credentials.
+    patterns:
+      - pattern-either:
+          - pattern: logging.$LEVEL(..., $HANDLER.headers, ...)
+          - pattern: logging.$LEVEL(..., dict($HANDLER.headers), ...)
+      - metavariable-regex:
+          metavariable: $LEVEL
+          regex: '^(debug|info|warning|error|critical|exception)$'

@@ -1,0 +1,30 @@
+{
+  "decision": "BLOCK",
+  "findings": [
+    {
+      "kind": "code",
+      "id": "log-raw-request-headers",
+      "path": "audit_candidate.py",
+      "line": 6,
+      "severity": "ERROR",
+      "blocking": true
+    },
+    {
+      "kind": "configuration",
+      "id": "DS-0002",
+      "path": "Dockerfile",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "kind": "dependency",
+      "id": "CVE-2020-14343",
+      "path": "requirements.txt",
+      "package": "PyYAML",
+      "installed": "5.3.1",
+      "fix": "5.4",
+      "severity": "CRITICAL",
+      "blocking": true
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+rules:
+  - id: inspect-header-logging
+    languages: [python]
+    severity: WARNING
+    message: A logging argument references headers. Inspect the expression.
+    pattern: logging.$LEVEL(..., <... $HANDLER.headers ...>, ...)
