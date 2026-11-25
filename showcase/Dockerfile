@@ -1,2 +1,2 @@
 FROM scratch
-USER root
+USER 65532:65532

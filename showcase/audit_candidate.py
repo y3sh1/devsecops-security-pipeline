@@ -1,6 +1,6 @@
-# Scanner input only. This function is never imported or invoked.
+"""Example of logging only the number of request headers."""
 import logging
 
 
 def record_request(handler):
-    logging.info("request headers = %s", handler.headers)
+    logging.info("header count = %d", len(handler.headers))
