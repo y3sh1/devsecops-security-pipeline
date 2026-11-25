@@ -1,0 +1,6 @@
+# Scanner input only. This function is never imported or invoked.
+import logging
+
+
+def record_request(handler):
+    logging.info("request headers = %s", handler.headers)
