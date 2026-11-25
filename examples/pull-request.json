@@ -1,0 +1,60 @@
+{
+  "pull_request": "https://github.com/y3sh1/devsecops-security-pipeline/pull/1",
+  "revisions": [
+    {
+      "commit": "2ce660da472a1632408e9bb0660ce698f23cb580",
+      "workflow": "https://github.com/y3sh1/devsecops-security-pipeline/actions/runs/45621060421",
+      "build_step": "skipped",
+      "decision": "BLOCK",
+      "findings": [
+        {
+          "kind": "code",
+          "id": "log-raw-request-headers",
+          "path": "showcase/audit_candidate.py",
+          "line": 6,
+          "severity": "ERROR",
+          "blocking": true
+        },
+        {
+          "kind": "configuration",
+          "id": "DS-0002",
+          "path": "showcase/Dockerfile",
+          "severity": "HIGH",
+          "blocking": true
+        },
+        {
+          "kind": "configuration",
+          "id": "DS-0026",
+          "path": "showcase/Dockerfile",
+          "severity": "LOW",
+          "blocking": false
+        },
+        {
+          "kind": "dependency",
+          "id": "CVE-2020-14343",
+          "path": "showcase/requirements.txt",
+          "package": "PyYAML",
+          "installed": "5.3.1",
+          "fix": "5.4",
+          "severity": "CRITICAL",
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "commit": "4172f65350098c22dc684172999140c48190e30e",
+      "workflow": "https://github.com/y3sh1/devsecops-security-pipeline/actions/runs/45621273513",
+      "build_step": "success",
+      "decision": "PASS",
+      "findings": [
+        {
+          "kind": "configuration",
+          "id": "DS-0026",
+          "path": "showcase/Dockerfile",
+          "severity": "LOW",
+          "blocking": false
+        }
+      ]
+    }
+  ]
+}

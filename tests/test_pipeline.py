@@ -14,10 +14,13 @@ from service.server import HealthHandler
 
 class PolicyTests(unittest.TestCase):
     def report(self, result):
-        return normalize({"results": [], "errors": []}, {"SchemaVersion": 2, "Results": [result]})
+        return normalize({"results": [], "errors": []},
+                         {"SchemaVersion": 2, "ArtifactType": "filesystem", "Results": [result]})
 
     def test_empty_scan_passes(self):
         self.assertEqual(self.report({"Target": "service"})["decision"], "PASS")
+        git_scan = {"SchemaVersion": 2, "ArtifactType": "repository", "Results": []}
+        self.assertEqual(normalize({"results": [], "errors": []}, git_scan)["decision"], "PASS")
 
     def test_low_configuration_reported_and_passes(self):
         report = self.report({"Target": "Dockerfile", "Misconfigurations": [

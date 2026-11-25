@@ -33,7 +33,11 @@ The second command stages the three changes below together in a temporary direct
 | Add an unused, old PyYAML pin to the inventory | Trivy reports the package, installed version, advisory ID and available fixed version | Remove the unused dependency |
 | End the Dockerfile with `USER root` | Trivy identifies the failed Dockerfile check | Restore the explicit runtime UID and GID |
 
-See [the saved candidate decision](examples/before.json) and [the saved decision after repair](examples/after.json) for the results from running this demonstration.
+The local run used Semgrep CE 1.187.0, Trivy 0.76.2 and the vulnerability database updated at 07:11 UTC on November 25, 2026. The logging rule at line 6, Dockerfile check DS-0002 and CVE-2020-14343 in PyYAML 5.3.1 all blocked the candidate. The repaired candidate and the full checkout both passed with zero findings. [Candidate report](examples/before.json) · [Repaired report](examples/after.json)
+
+## Hosted pull request demonstration
+
+The first revision of PR #1 produced three blocking findings. GitHub Actions skipped the Docker build. The second revision limited the log to a header count, removed the unused package and selected a non-root container user. The gate passed and the health-service image built. Both runs also recorded the same low-severity Dockerfile advisory (DS-0026), which stayed visible under the review policy. The saved JSON contains the actual scanner decisions from both hosted runs. [Demonstration PR](https://github.com/y3sh1/devsecops-security-pipeline/pull/1) · [Blocked run](https://github.com/y3sh1/devsecops-security-pipeline/actions/runs/45621060421) · [Passing run](https://github.com/y3sh1/devsecops-security-pipeline/actions/runs/45621273513) · [Archived decisions](examples/pull-request.json)
 
 ## Merge policy
 

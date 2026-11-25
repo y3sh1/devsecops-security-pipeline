@@ -22,7 +22,8 @@ def command(tool, *args, cwd):
 def normalize(semgrep, trivy):
     if not isinstance(semgrep.get("results"), list) or semgrep.get("errors") != []:
         raise ValueError("Semgrep returned an incomplete report")
-    if trivy.get("SchemaVersion") != 2 or not isinstance(trivy.get("Results", []), list):
+    if (trivy.get("SchemaVersion") != 2 or trivy.get("ArtifactType") not in {"filesystem", "repository"}
+            or not isinstance(trivy.get("Results", []), list)):
         raise ValueError("unsupported Trivy report")
     rows = []
     for item in semgrep["results"]:
